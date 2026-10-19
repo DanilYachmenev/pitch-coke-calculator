@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offline shipment economics calculator. Flexible expenses, independent scenarios, and transparent financial calculations.">
+  <meta name="referrer" content="no-referrer">
+  <title>Pitch · Trade economics</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23162e3a'/%3E%3Cpath d='M18 46V18h16a10 10 0 0 1 0 20H26' fill='none' stroke='%23a6d7c1' stroke-width='7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="model.js"></script>
+  <script defer src="i18n.js"></script>
+  <script defer src="exports.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="masthead no-print">
+    <a class="brand" href="#" aria-label="Pitch home"><span class="brand-mark">P</span><span>PITCH<span class="brand-sub" data-t="app"></span></span></a>
+    <div class="masthead-right"><span class="local-status"><i></i><span data-t="local"></span></span><div class="language" aria-label="Language"><button data-lang="en" type="button">EN</button><button data-lang="ru" type="button">RU</button></div></div>
+  </header>
+  <main>
+    <div class="page-heading no-print"><div><p class="eyebrow">BIKLYAN → HAIPHONG <span id="heading-route"></span></p><h1 data-t="title"></h1><p class="muted" data-t="subtitle"></p></div><div class="heading-actions"><button class="button" data-action="library" data-t="load"></button><button class="button primary" data-action="save-dialog"><span aria-hidden="true">＋</span> <span data-t="save"></span></button></div></div>
+    <nav class="workspace-nav no-print" aria-label="Workspace"><div role="tablist"><button id="tab-calculator" role="tab" aria-controls="calculator-panel" aria-selected="true" data-tab="calculator" data-t="calculator"></button><button id="tab-comparison" role="tab" aria-controls="comparison-panel" aria-selected="false" data-tab="comparison" data-t="comparison"></button></div><div class="nav-actions"><button class="text-button" data-action="share" data-t="share"></button><details class="export-menu"><summary data-t="export"></summary><div><button data-action="csv" data-t="csv"></button><button data-action="json" data-t="json"></button><button data-action="import" data-t="import"></button><button data-action="print" data-t="print"></button><button data-action="duplicate" data-t="duplicate"></button><button data-action="reset" data-t="reset"></button></div></details></div></nav>
+    <section id="calculator-panel" role="tabpanel" aria-labelledby="tab-calculator">
+      <section class="panel deal-panel"><div class="section-heading"><h2><span class="section-number">01</span><span data-t="deal"></span></h2><label class="scenario-label"><span data-t="current"></span><input id="scenario-name" data-field="name" maxlength="200" aria-label="Scenario name"></label></div><div id="deal-fields" class="deal-grid"></div><p class="small-note no-print" data-t="quoteNote"></p></section>
+      <div id="validation" class="warning no-print" role="status" hidden></div>
+      <div class="calculation-grid">
+        <section class="panel expense-panel"><div class="section-heading"><div><h2><span class="section-number">02</span><span data-t="expenses"></span></h2><p class="muted small" data-t="expenseHint"></p></div><button class="button small-button no-print" data-action="add"><span aria-hidden="true">＋</span> <span data-t="add"></span></button></div><div class="table-scroll"><table class="expense-table"><thead><tr><th data-t="enabled"></th><th data-t="expense"></th><th data-t="amount"></th><th data-t="currency"></th><th data-t="basis"></th><th data-t="category"></th><th class="number" data-t="total"></th><th class="no-print"><span class="sr-only" data-t="actions"></span></th></tr></thead><tbody id="expense-rows"></tbody></table></div><div class="expense-foot"><p data-t="baseNote"></p><div><span data-t="transportBase"></span><strong id="commission-base"></strong></div></div></section>
+        <aside class="results-panel" aria-label="Financial results"><p class="eyebrow light" data-t="allUSD"></p><span class="profit-label" data-t="netProfit"></span><div id="hero-profit" class="hero-profit" aria-live="polite"></div><div class="margin-line"><span data-t="margin"></span><strong id="hero-margin"></strong></div><div class="mini-kpis"><div><span data-t="profitMT"></span><strong id="hero-profit-mt"></strong></div><div><span data-t="costMT"></span><strong id="hero-cost-mt"></strong></div></div><div class="summary-lines" id="summary-lines"></div><div class="structure"><span class="small" data-t="structure"></span><div id="cost-bar" class="cost-bar" role="img"></div><div id="cost-legend" class="cost-legend"></div></div></aside>
+      </div>
+      <section class="panel breakdown-panel"><div class="section-heading"><h2><span class="section-number">03</span><span data-t="breakdown"></span></h2><span class="unit-note" data-t="allUSD"></span></div><div id="breakdown" class="breakdown-grid"></div></section>
+      <section class="panel loading-panel"><div class="section-heading"><div><h2><span class="section-number">04</span><span data-t="loading"></span></h2><p class="muted small" data-t="loadingSub"></p></div></div><div class="loading-layout"><div><div id="loading-fields" class="loading-fields"></div><p class="small-note" data-t="targetNote"></p></div><div id="loading-results" class="loading-results" aria-live="polite"></div></div><p class="physical-note" data-t="physical"></p></section>
+    </section>
+    <section id="comparison-panel" role="tabpanel" aria-labelledby="tab-comparison" hidden><section class="panel"><div class="section-heading"><div><h2 data-t="compareTitle"></h2><p class="muted small" data-t="compareSub"></p></div><button class="button small-button" data-action="save-dialog" data-t="save"></button></div><fieldset class="scenario-picker"><legend class="sr-only" data-t="chooseScenarios"></legend><div id="scenario-choices"></div></fieldset><div id="comparison-table" class="table-scroll"></div><p class="small-note" data-t="compareSave"></p></section><section class="panel comparison-chart"><h2 data-t="profitComparison"></h2><div id="profit-chart"></div></section></section>
+    <footer><span data-t="footer"></span><span data-t="privacy"></span></footer>
+  </main>
+  <dialog id="library-dialog"><div class="dialog-heading"><h2 data-t="library"></h2><button class="icon-button" data-action="close-dialog" aria-label="Close">×</button></div><form id="save-form"><label><span data-t="saveAs"></span><input id="save-name" maxlength="200" required></label><button class="button primary" type="submit" data-t="saveNew"></button></form><div id="saved-list"></div><div class="dialog-foot"><button class="button" data-action="import" data-t="import"></button><button class="button" data-action="close-dialog" data-t="close"></button></div></dialog>
+  <dialog id="share-dialog"><div class="dialog-heading"><h2 data-t="shareTitle"></h2><button class="icon-button" data-action="close-dialog" aria-label="Close">×</button></div><p class="warning" data-t="shareWarning"></p><p id="local-link-note" class="small-note" data-t="localLink"></p><p id="long-link-note" class="small-note" data-t="longLink" hidden></p><label><span data-t="link"></span><textarea id="share-link" readonly rows="5"></textarea></label><div class="dialog-foot"><button class="button" data-action="json" data-t="json"></button><button class="button primary" data-action="copy-link" data-t="copyLink"></button></div></dialog>
+  <input type="file" id="import-file" accept=".json,application/json" hidden>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <p id="storage-warning" class="storage-warning no-print" role="alert" hidden></p>
+  <div id="print-report"></div>
+  <noscript>This calculator requires JavaScript. Enable it in your browser to calculate locally.</noscript>
+</body>
+</html>

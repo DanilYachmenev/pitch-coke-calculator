@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "name": "B2",
+  "product": "Pitch Coke",
+  "origin": "Biklyan, Russia",
+  "destination": "Haiphong, Vietnam",
+  "containerType": "20'DC",
+  "containers": 114,
+  "cargoWeight": 20,
+  "sellingPrice": 145,
+  "usdRub": 85.1,
+  "usdVnd": 26000,
+  "loading": {
+    "bagWeight": 800,
+    "bagVolume": 1,
+    "bags": 25,
+    "target": 20
+  },
+  "expenses": [
+    {
+      "id": "purchase",
+      "name": "Coke Purchase",
+      "amount": 5,
+      "currency": "USD",
+      "basis": "mt",
+      "category": "Goods",
+      "enabled": true
+    },
+    {
+      "id": "rail",
+      "name": "Railway Freight",
+      "amount": 86900,
+      "currency": "RUB",
+      "basis": "container",
+      "category": "Transportation",
+      "enabled": true
+    },
+    {
+      "id": "sea",
+      "name": "Sea Freight",
+      "amount": 925,
+      "currency": "USD",
+      "basis": "container",
+      "category": "Transportation",
+      "enabled": true
+    },
+    {
+      "id": "inland",
+      "name": "Inland Transportation",
+      "amount": 450,
+      "currency": "USD",
+      "basis": "container",
+      "category": "Transportation",
+      "enabled": false
+    },
+    {
+      "id": "additional",
+      "name": "Additional Expenses",
+      "amount": 200,
+      "currency": "USD",
+      "basis": "container",
+      "category": "Other",
+      "enabled": true
+    },
+    {
+      "id": "conversion",
+      "name": "Currency Conversion",
+      "amount": 4,
+      "currency": "USD",
+      "basis": "revenue",
+      "category": "Financial",
+      "enabled": true
+    },
+    {
+      "id": "antin",
+      "name": "Antin Commission",
+      "amount": 4,
+      "currency": "USD",
+      "basis": "transport",
+      "category": "Financial",
+      "enabled": false
+    }
+  ],
+  "profiles": {}
+}
